@@ -1,0 +1,192 @@
+//
+//Written by GowinSynthesis
+//Product Version "GowinSynthesis V1.9.8.10"
+//Sun Apr 16 17:25:06 2023
+
+//Source file index table:
+//file0 "\C:/Users/melii/OneDrive/Belgeler/fpga_project_8/src/bellek.v"
+`timescale 100 ps/100 ps
+module port (
+  clk,
+  addr,
+  data,
+  cs,
+  we,
+  oe
+)
+;
+input clk;
+input [3:0] addr;
+inout [15:0] data;
+input cs;
+input we;
+input oe;
+wire clk_d;
+wire cs_d;
+wire we_d;
+wire oe_d;
+wire n5_4;
+wire n314_3;
+wire data_0_9;
+wire n315_2;
+wire [3:0] addr_d;
+wire [0:0] data_in;
+wire [0:0] data_out;
+wire VCC;
+wire GND;
+  IBUF clk_ibuf (
+    .O(clk_d),
+    .I(clk) 
+);
+  IBUF addr_0_ibuf (
+    .O(addr_d[0]),
+    .I(addr[0]) 
+);
+  IBUF addr_1_ibuf (
+    .O(addr_d[1]),
+    .I(addr[1]) 
+);
+  IBUF addr_2_ibuf (
+    .O(addr_d[2]),
+    .I(addr[2]) 
+);
+  IBUF addr_3_ibuf (
+    .O(addr_d[3]),
+    .I(addr[3]) 
+);
+  IBUF cs_ibuf (
+    .O(cs_d),
+    .I(cs) 
+);
+  IBUF we_ibuf (
+    .O(we_d),
+    .I(we) 
+);
+  IBUF oe_ibuf (
+    .O(oe_d),
+    .I(oe) 
+);
+  IOBUF data_0_iobuf (
+    .O(data_in[0]),
+    .IO(data[0]),
+    .I(data_out[0]),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s1 (
+    .O(data[1]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s2 (
+    .O(data[2]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s3 (
+    .O(data[3]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s4 (
+    .O(data[4]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s5 (
+    .O(data[5]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s6 (
+    .O(data[6]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s7 (
+    .O(data[7]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s8 (
+    .O(data[8]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s9 (
+    .O(data[9]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s10 (
+    .O(data[10]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s11 (
+    .O(data[11]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s12 (
+    .O(data[12]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s13 (
+    .O(data[13]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s14 (
+    .O(data[14]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  TBUF data_15_s15 (
+    .O(data[15]),
+    .I(GND),
+    .OEN(data_0_9) 
+);
+  LUT2 n5_s0 (
+    .F(n5_4),
+    .I0(cs_d),
+    .I1(we_d) 
+);
+defparam n5_s0.INIT=4'h8;
+  LUT3 n314_s0 (
+    .F(n314_3),
+    .I0(we_d),
+    .I1(cs_d),
+    .I2(oe_d) 
+);
+defparam n314_s0.INIT=8'h40;
+  LUT3 data_0_s4 (
+    .F(data_0_9),
+    .I0(we_d),
+    .I1(cs_d),
+    .I2(oe_d) 
+);
+defparam data_0_s4.INIT=8'hBF;
+  DFFNE data_out_0_s1 (
+    .Q(data_out[0]),
+    .D(n315_2),
+    .CLK(clk_d),
+    .CE(n314_3) 
+);
+  RAM16S1 mem_mem_0_0_s (
+    .DO(n315_2),
+    .DI(data_in[0]),
+    .AD(addr_d[3:0]),
+    .WRE(n5_4),
+    .CLK(clk_d) 
+);
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+  GSR GSR (
+    .GSRI(VCC) 
+);
+endmodule /* port */
